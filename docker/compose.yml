@@ -1,0 +1,17 @@
+services:
+  python:
+    build:
+      context: ./python
+      dockerfile: Dockerfile
+      args:
+        - PYTHON_IMAGE=${PYTHON_IMAGE}
+        - CONTAINER_USER_NAME=${CONTAINER_USER_NAME}
+        - CONTAINER_USER_ID=${HOST_USER_ID}
+        - CONTAINER_USER_PASSWORD=${CONTAINER_USER_PASSWORD}
+        - CONTAINER_SOURCE_ROOT=${CONTAINER_SOURCE_ROOT}
+        - PYTHON_PORT=${PYTHON_PORT}
+    tty: true
+    ports:
+      - ${PYTHON_PORT}:8000
+    volumes:
+      - ${PROJECT_PATH}:${CONTAINER_SOURCE_ROOT}
