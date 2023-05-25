@@ -1,5 +1,7 @@
 services:
   python:
+    # M1 Mac 対応
+    platform: linux/x86_64
     build:
       context: ./python
       dockerfile: Dockerfile
