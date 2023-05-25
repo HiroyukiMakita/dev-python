@@ -5,6 +5,7 @@ ARG CONTAINER_USER_NAME
 ARG CONTAINER_USER_ID
 ARG CONTAINER_USER_PASSWORD
 ARG CONTAINER_SOURCE_ROOT
+ARG POETRY_VERSION
 ARG PYTHON_PORT
 
 RUN apt-get -y update \
@@ -24,6 +25,7 @@ ENV POETRY_HOME /etc/poetry
 ENV PATH $POETRY_HOME/bin:$PATH
 
 # poetry インストール
+ENV POETRY_VERSION=${POETRY_VERSION}
 RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/etc/poetry python3 - \
     # 仮想環境を作成しない設定(コンテナ前提のため，仮想環境を作らない)
     && poetry config virtualenvs.create false
