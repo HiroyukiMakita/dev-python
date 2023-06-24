@@ -34,13 +34,18 @@ PYTHON := python
 #########################################################
 
 init:
-	@make build up
+	@make build up catch-up
 
 build:
 	@$(BUILD)
 
 up:
 	@$(UP)
+
+catch-up:
+	$(eval CONTAINER := $(PYTHON))
+	$(eval ARG := -c "cd $(CONTAINER_SOURCE_ROOT) && poetry install")
+	@$(EXEC)
 
 exec-python:
 	$(eval CONTAINER := $(PYTHON))
