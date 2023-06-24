@@ -26,9 +26,9 @@ ENV PATH $POETRY_HOME/bin:$PATH
 
 # poetry インストール
 ENV POETRY_VERSION=${POETRY_VERSION}
-RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/etc/poetry python3 - \
-    # 仮想環境を作成しない設定(コンテナ前提のため，仮想環境を作らない)
-    && poetry config virtualenvs.create false
+RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/etc/poetry python3 -
+# venv のファイルをプロジェクトディレクトリの下に置く設定
+ENV POETRY_VIRTUALENVS_IN_PROJECT=true
 
 # expose port
 EXPOSE ${PYTHON_PORT}
