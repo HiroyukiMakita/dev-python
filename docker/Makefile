@@ -11,7 +11,7 @@ CONTAINER_USER_NAME := ${CONTAINER_USER_NAME}
 # variables
 #########################################################
 
-COMPOSE := HOST_USER_ID=`id -u` HOST_GROUP_ID=`id -g` docker-compose
+COMPOSE := HOST_USER_ID=`id -u` HOST_GROUP_ID=`id -g` docker compose
 BUILD := $(COMPOSE) build --no-cache
 UP := $(COMPOSE) up -d
 DOWN := $(COMPOSE) down

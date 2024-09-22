@@ -3,18 +3,18 @@ FROM ${PYTHON_IMAGE}
 
 ARG CONTAINER_USER_NAME
 ARG CONTAINER_USER_ID
-ARG CONTAINER_USER_PASSWORD
 ARG CONTAINER_SOURCE_ROOT
 ARG POETRY_VERSION
 ARG PYTHON_PORT
 
-RUN apt-get -y update \
+RUN --mount=type=secret,id=CONTAINER_USER_PASSWORD \
+    apt-get -y update \
     # 一般ユーザーを作成、sudo グループに入れる
     && useradd -m --uid ${CONTAINER_USER_ID} --groups sudo ${CONTAINER_USER_NAME} \
     # sudo 時のパスワード入力を省略する
     && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
     # パスワード設定
-    && echo ${CONTAINER_USER_NAME}:${CONTAINER_USER_PASSWORD} | chpasswd
+    && echo ${CONTAINER_USER_NAME}:$(cat /run/secrets/CONTAINER_USER_PASSWORD) | chpasswd
 
 # 作業ディレクトリを作成・移動
 RUN mkdir -p ${CONTAINER_SOURCE_ROOT}

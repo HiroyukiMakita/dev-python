@@ -1,13 +1,16 @@
 services:
   python:
+    container_name: ${COMPOSE_PROJECT_NAME}_python
+    platform: linux/amd64
     build:
       context: ./python
+      secrets:
+          - CONTAINER_USER_PASSWORD
       dockerfile: Dockerfile
       args:
         - PYTHON_IMAGE=${PYTHON_IMAGE}
         - CONTAINER_USER_NAME=${CONTAINER_USER_NAME}
         - CONTAINER_USER_ID=${HOST_USER_ID}
-        - CONTAINER_USER_PASSWORD=${CONTAINER_USER_PASSWORD}
         - CONTAINER_SOURCE_ROOT=${CONTAINER_SOURCE_ROOT}
         - POETRY_VERSION=${POETRY_VERSION}
         - PYTHON_PORT=${PYTHON_PORT}
@@ -16,3 +19,7 @@ services:
       - ${PYTHON_PORT}:8000
     volumes:
       - ${PROJECT_PATH}:${CONTAINER_SOURCE_ROOT}
+
+secrets:
+    CONTAINER_USER_PASSWORD:
+        environment: CONTAINER_USER_PASSWORD
