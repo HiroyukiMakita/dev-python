@@ -46,8 +46,9 @@
 				"ms-toolsai.vscode-jupyter-slideshow",
 				"datoux.vscode-pytest-intellisence",
 				"pamaron.pytest-runner",
-				"ms-python.isort",
-				"ms-python.black-formatter"
+				"charliermarsh.ruff",
+				"donjayamanne.git-extension-pack",
+				"GitHub.copilot"
 			]
 		}
 	}

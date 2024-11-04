@@ -4,31 +4,37 @@ FROM ${PYTHON_IMAGE}
 ARG CONTAINER_USER_NAME
 ARG CONTAINER_USER_ID
 ARG CONTAINER_SOURCE_ROOT
-ARG POETRY_VERSION
 ARG PYTHON_PORT
 
+RUN apt-get update -y \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    git vim sudo curl lsof unzip wget \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN --mount=type=secret,id=CONTAINER_USER_PASSWORD \
-    apt-get -y update \
     # 一般ユーザーを作成、sudo グループに入れる
-    && useradd -m --uid ${CONTAINER_USER_ID} --groups sudo ${CONTAINER_USER_NAME} \
+    useradd -m --uid ${CONTAINER_USER_ID} --groups sudo ${CONTAINER_USER_NAME} \
     # sudo 時のパスワード入力を省略する
     && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
     # パスワード設定
     && echo ${CONTAINER_USER_NAME}:$(cat /run/secrets/CONTAINER_USER_PASSWORD) | chpasswd
 
+USER ${CONTAINER_USER_NAME}
+
 # 作業ディレクトリを作成・移動
-RUN mkdir -p ${CONTAINER_SOURCE_ROOT}
+RUN sudo mkdir -p ${CONTAINER_SOURCE_ROOT} \
+    && sudo chown -R ${CONTAINER_USER_NAME}:${CONTAINER_USER_NAME} ${CONTAINER_SOURCE_ROOT}
+
 WORKDIR ${CONTAINER_SOURCE_ROOT}
 
-# poetry の PATH 指定
-ENV POETRY_HOME /etc/poetry
-ENV PATH $POETRY_HOME/bin:$PATH
+#[uv](https://docs.astral.sh/uv/) のインストール
+# https://docs.astral.sh/uv/guides/integration/docker/#installing-uv
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh;
 
-# poetry インストール
-ENV POETRY_VERSION=${POETRY_VERSION}
-RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/etc/poetry python3 -
-# venv のファイルをプロジェクトディレクトリの下に置く設定
-ENV POETRY_VIRTUALENVS_IN_PROJECT=true
+ENV VIRTUAL_ENV ${CONTAINER_SOURCE_ROOT}/.venv
+ENV BASH_ENV ~/.bashrc
+ENV PATH $PATH:/home/${CONTAINER_USER_NAME}/.cargo/bin
 
 # expose port
 EXPOSE ${PYTHON_PORT}

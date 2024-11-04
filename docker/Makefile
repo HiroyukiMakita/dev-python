@@ -6,6 +6,8 @@ include .env
 PROJECT_PATH := ${PROJECT_PATH}
 CONTAINER_SOURCE_ROOT := ${CONTAINER_SOURCE_ROOT}
 CONTAINER_USER_NAME := ${CONTAINER_USER_NAME}
+COMPOSE_PROJECT_NAME := ${COMPOSE_PROJECT_NAME}
+PYTHON_VERSION := ${PYTHON_VERSION}
 
 #########################################################
 # variables
@@ -23,6 +25,18 @@ ARG =
 PYTHON := python
 
 #########################################################
+# parallel counts
+#########################################################
+JOBS = 1
+ifeq ($(shell uname),Linux)
+# Linux
+	JOBS = `grep cpu.cores /proc/cpuinfo | sort -u | sed 's/[^0-9]//g'`
+else ifeq ($(shell uname),Darwin)
+# MacOS
+	JOBS = `sysctl -a machdep.cpu | grep machdep.cpu.core_count | sed 's/[^0-9]//g'`
+endif
+
+#########################################################
 # if include source not exists commands
 #########################################################
 
@@ -34,20 +48,30 @@ PYTHON := python
 #########################################################
 
 init:
-	@make build up catch-up
+	@echo "make -j${JOBS}"
+	@make build up uv-init
 
 build:
-	@$(BUILD)
+	@+$(BUILD)
 
 up:
 	@$(UP)
 
-catch-up:
+# Dockerfile 内でやるとうまく実行されないのか .venv が作成されないので
+uv-init:
 	$(eval CONTAINER := $(PYTHON))
-	$(eval ARG := -c "cd $(CONTAINER_SOURCE_ROOT) && poetry install")
+	$(eval ARG := -c "\
+		cd $(CONTAINER_SOURCE_ROOT) && \
+		if [ ! -e pyproject.toml ]; then uv init --name ${COMPOSE_PROJECT_NAME}; fi && \
+		uv sync && \
+		uv python pin ${PYTHON_VERSION} && \
+		uv python install && \
+		uv run python --version && \
+		uv run python hello.py\
+	")
 	@$(EXEC)
 
-exec-python:
+exec-py:
 	$(eval CONTAINER := $(PYTHON))
 	$(eval ARG := -c "cd $(CONTAINER_SOURCE_ROOT) && bash")
 	@$(EXEC)

@@ -2,9 +2,6 @@
 
 ## Python の開発環境
 
-以下を参考に作成しています。
-[Python 開発環境構築手順（VSCode, Docker, Poetry, isort, black, flake8, pytest） - Qiita](https://qiita.com/nokoxxx1212/items/da1832468cbd9a762a46)
-
 ※ venv ディレクトリはプロジェクトルートに作成するように設定しています。
 
 ## 構築
@@ -22,18 +19,17 @@ $ make
 // make 後は立ち上がるので不要
 $ make up
 // python コンテナに入る
-$ make exec-python
+$ make exec-py
 ```
 
 その他の make コマンドは `docker/Makefile` をご覧ください。
 
-1. ライブラリのインストール
+## ライブラリのインストール
 
-[Poetry](https://python-poetry.org/) を使用しています
+[uv](https://docs.astral.sh/ruff/) を使用しています
 
 ```
-// 初回ビルド後はコンテナ内で以下を実行
-$ poetry install
+$ uv add hogehoge
 ```
 
 ## テスト
@@ -41,25 +37,28 @@ $ poetry install
 [pytest](https://docs.pytest.org/) を使用しています
 
 ```
-$ poetry run pytest
+$ uv run pytest
 ```
 
 ## Linter、Formatter を実行
 
 以下を使用しています。
 
-- [isort](https://pycqa.github.io/isort/)
-  インポートをアルファベット順に並べ替え、自動的にセクションとタイプ別に分類する Python ユーティリティ/ライブラリ
-- [Flake8](https://flake8.pycqa.org/en/latest/)
-  Python ソースコードの論理エラーやスタイルをチェックするリンター
-- [Black](https://black.readthedocs.io/)
-  フォーマッター
+- [Ruff](https://docs.astral.sh/ruff/)
+  以前は以下を利用していましたが、Ruff は単独ですべてを網羅できるようにするもののようでそれに移行しました。
+  - [isort](https://pycqa.github.io/isort/)
+    インポートをアルファベット順に並べ替え、自動的にセクションとタイプ別に分類する Python ユーティリティ/ライブラリ
+  - [Flake8](https://flake8.pycqa.org/en/latest/)
+    Python ソースコードの論理エラーやスタイルをチェックするリンター
+  - [Black](https://black.readthedocs.io/)
+    フォーマッター
 
-```
-$ poetry run isort src tests
-$ poetry run black src tests
-$ poetry run flake8 src tests
-```
+VSCode の拡張機能を入れてください。  
+`.vscode/extensions.json` に記載の拡張機能をインストールしてください。  
+`jq` が必要ですが、`./vscode/extensions-installer.sh` で一括インストール可能です。
+
+
+[![My Skills](https://skillicons.dev/icons?i=js,html,css,wasm)](https://skillicons.dev)
 
 </a>
 <a href="https://python-poetry.org/">
