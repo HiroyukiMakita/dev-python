@@ -18,6 +18,7 @@ services:
       - ${PYTHON_PORT}:8000
     volumes:
       - ${PROJECT_PATH}:${CONTAINER_SOURCE_ROOT}
+      - ${HOST_SSH_DIR}:${CONTAINER_SSH_DIR}
 
 secrets:
     CONTAINER_USER_PASSWORD:
