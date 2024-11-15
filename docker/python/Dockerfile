@@ -34,7 +34,7 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh;
 
 ENV VIRTUAL_ENV ${CONTAINER_SOURCE_ROOT}/.venv
 ENV BASH_ENV ~/.bashrc
-ENV PATH $PATH:/home/${CONTAINER_USER_NAME}/.cargo/bin
+ENV PATH="/home/${CONTAINER_USER_NAME}/.local/bin/:$PATH"
 
 # expose port
 EXPOSE ${PYTHON_PORT}
