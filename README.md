@@ -1,5 +1,14 @@
 # docker-python
 
+![Python](https://img.shields.io/badge/Python-3.13-065F97?logo=python&logoColor=CD9A0B)
+![uv](https://img.shields.io/badge/uv-86944A?logo=uv&logoColor=271231)
+![Ruff](https://img.shields.io/badge/Ruff-86944A?logo=ruff&logoColor=271231)
+![Jupyter](https://img.shields.io/badge/Jupyter-CCCCCC?logo=jupyter&logoColor=C25F20)
+![Pytest](https://img.shields.io/badge/Pytest-0480B5?logo=pytest&logoColor=white)
+
+![Make](https://img.shields.io/badge/Make-822322?logo=gnu&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Compose-1658DB?logo=docker&logoColor=white)
+
 ## Python の開発環境
 
 ※ venv ディレクトリはプロジェクトルートに作成するように設定しています。
@@ -56,41 +65,3 @@ $ uv run pytest
 VSCode の拡張機能を入れてください。  
 `.vscode/extensions.json` に記載の拡張機能をインストールしてください。  
 `jq` が必要ですが、`./vscode/extensions-installer.sh` で一括インストール可能です。
-
-
-[![My Skills](https://skillicons.dev/icons?i=js,html,css,wasm)](https://skillicons.dev)
-
-</a>
-<a href="https://python-poetry.org/">
-<img alt="Poetry" src="https://python-poetry.org/images/logo-origami.svg"
-  height="150"
-/>
-</a>
-
-</a>
-<a href="https://docs.pytest.org/">
-<img alt="pytest" src="https://docs.pytest.org/en/7.3.x/_static/pytest_logo_curves.svg"
-  height="150"
-/>
-</a>
-
-</a>
-<a href="https://pycqa.github.io/isort/">
-<img alt="isort" src="https://raw.githubusercontent.com/pycqa/isort/main/art/logo_large.png"
-  height="150"
-/>
-</a>
-
-</a>
-<a href="https://flake8.pycqa.org/en/latest/">
-<img alt="flake8" src="https://www.python.org/static/img/python-logo-large.c36dccadd999.png?1576869008"
-  height="150"
-/><span>flake8</span>
-</a>
-
-</a>
-<a href="https://black.readthedocs.io/">
-<img alt="Black" src="https://black.readthedocs.io/en/stable/_static/logo2-readme.png"
-  height="150"
-/>
-</a>
