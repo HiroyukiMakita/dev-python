@@ -6,6 +6,8 @@ services:
       context: ./python
       secrets:
           - CONTAINER_USER_PASSWORD
+          - CONTAINER_GIT_USER
+          - CONTAINER_GIT_EMAIL
       dockerfile: Dockerfile
       args:
         - PYTHON_IMAGE=${PYTHON_IMAGE}
@@ -23,3 +25,7 @@ services:
 secrets:
     CONTAINER_USER_PASSWORD:
         environment: CONTAINER_USER_PASSWORD
+    CONTAINER_GIT_USER:
+        environment: CONTAINER_GIT_USER
+    CONTAINER_GIT_EMAIL:
+        environment: CONTAINER_GIT_EMAIL

@@ -20,11 +20,18 @@ RUN --mount=type=secret,id=CONTAINER_USER_PASSWORD \
     # パスワード設定
     && echo ${CONTAINER_USER_NAME}:$(cat /run/secrets/CONTAINER_USER_PASSWORD) | chpasswd
 
+# 作業ディレクトリを作成
+RUN mkdir -p ${CONTAINER_SOURCE_ROOT} \
+    && chown -R ${CONTAINER_USER_NAME}:${CONTAINER_USER_NAME} ${CONTAINER_SOURCE_ROOT}
+
 USER ${CONTAINER_USER_NAME}
 
-# 作業ディレクトリを作成・移動
-RUN sudo mkdir -p ${CONTAINER_SOURCE_ROOT} \
-    && sudo chown -R ${CONTAINER_USER_NAME}:${CONTAINER_USER_NAME} ${CONTAINER_SOURCE_ROOT}
+# Git の設定
+RUN --mount=type=secret,id=CONTAINER_GIT_USER \
+    --mount=type=secret,id=CONTAINER_GIT_EMAIL \
+    git config --global --add safe.directory ${CONTAINER_SOURCE_ROOT} \
+    && git config --global user.name $(sudo cat /run/secrets/CONTAINER_GIT_USER) \
+    && git config --global user.email $(sudo cat /run/secrets/CONTAINER_GIT_EMAIL)
 
 WORKDIR ${CONTAINER_SOURCE_ROOT}
 

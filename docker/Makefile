@@ -52,7 +52,7 @@ init:
 	@make build up uv-init
 
 build:
-	@+$(BUILD)
+	@+CONTAINER_GIT_USER=`git config --get user.name` CONTAINER_GIT_EMAIL=`git config --get user.email` $(BUILD)
 
 up:
 	@$(UP)
