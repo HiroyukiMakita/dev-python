@@ -1,0 +1,7 @@
+pre-commit:
+  commands:
+    nbstripout:
+      root: './'
+      glob: '*.ipynb'
+      run: uv run nbstripout {staged_files}
+      stage_fixed: true

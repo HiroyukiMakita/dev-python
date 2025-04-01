@@ -8,6 +8,7 @@
 
 ![Make](https://img.shields.io/badge/Make-822322?logo=gnu&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Compose-1658DB?logo=docker&logoColor=white)
+![lefthook](https://img.shields.io/badge/lefthook-282828?logo=lefthook&logoColor=FF2927)
 
 ## Python の開発環境
 
@@ -53,13 +54,15 @@ $ uv run pytest
 
 以下を使用しています。
 
-- [Ruff](https://docs.astral.sh/ruff/)
+- [Ruff](https://docs.astral.sh/ruff/) を使用しています。
+
   以前は以下を利用していましたが、Ruff は単独ですべてを網羅できるようにするもののようでそれに移行しました。
-  - [isort](https://pycqa.github.io/isort/)
+
+  - [isort](https://pycqa.github.io/isort/)  
     インポートをアルファベット順に並べ替え、自動的にセクションとタイプ別に分類する Python ユーティリティ/ライブラリ
-  - [Flake8](https://flake8.pycqa.org/en/latest/)
+  - [Flake8](https://flake8.pycqa.org/en/latest/)  
     Python ソースコードの論理エラーやスタイルをチェックするリンター
-  - [Black](https://black.readthedocs.io/)
+  - [Black](https://black.readthedocs.io/)  
     フォーマッター
 
 VSCode の拡張機能を入れてください。  

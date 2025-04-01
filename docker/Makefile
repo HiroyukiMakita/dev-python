@@ -58,6 +58,7 @@ up:
 	@$(UP)
 
 # Dockerfile 内でやるとうまく実行されないのか .venv が作成されないので
+# その他 uv sync 後に必要な初期化処理を行う
 uv-init:
 	$(eval CONTAINER := $(PYTHON))
 	$(eval ARG := -c "\
@@ -66,6 +67,7 @@ uv-init:
 		uv sync && \
 		uv python pin ${PYTHON_VERSION} && \
 		uv python install && \
+		uv run lefthook install && \
 		uv run python --version && \
 		uv run python hello.py\
 	")
