@@ -8,6 +8,14 @@
     },
     "editor.defaultFormatter": "charliermarsh.ruff"
   },
+  // Jupyter Notebook でもフォーマッタを使用するための設定
+  "notebook.formatOnSave.enabled": true,
+  "notebook.codeActionsOnSave": {
+    "notebook.source.fixAll": "explicit",
+    "notebook.source.organizeImports": "explicit",
+  },
   "cSpell.words": [],
-  "cSpell.ignorePaths": ["README.md"]
+  "cSpell.ignorePaths": [
+    "README.md"
+  ]
 }
