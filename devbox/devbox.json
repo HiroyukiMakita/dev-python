@@ -1,6 +1,6 @@
 {
   "packages": [
-    "jupyterlab@latest",
+    "python3Packages.jupyterlab@latest",
     "uv@latest",
     "python311@latest"
   ],
