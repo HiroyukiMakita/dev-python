@@ -8,17 +8,13 @@
     "init_hook": [
       "echo 'Sourcing .env file...'",
       "if [ -f .env ]; then source .env; else echo '.env file not found. Using default Python.'; fi",
-      // PYTHON_VERSION が設定されていない場合は、デフォルトで 3.11 になります
       "DESIRED_PYTHON_VERSION=${PYTHON_VERSION:-3.11}",
-      // パッケージ名を構築します（例: python3.11 -> python311）
       "PYTHON_PKG_NAME=$(echo "python${DESIRED_PYTHON_VERSION}" | sed 's/\.//g')",
       "echo "Ensuring Python version $DESIRED_PYTHON_VERSION (package: $PYTHON_PKG_NAME) is installed..."",
-      // 希望の Python バージョンを追加します。devbox add は冪等です。
-      // これにより、パッケージがまだ存在しない場合は devbox.json に追加され、インストールされます。
       "devbox add "${PYTHON_PKG_NAME}@latest"",
       "echo 'Welcome to devbox!'",
       "echo "Python version $DESIRED_PYTHON_VERSION should now be available."",
-      "python --version" // 確認
+      "python --version"
     ],
     "scripts": {
       "get_python_version": "echo $PYTHON_VERSION",
@@ -26,6 +22,6 @@
     }
   },
   "env": {
-    "PROJECT_PATH": "$PROJECT_PATH" // .env から供給されます
+    "PROJECT_PATH": "$PROJECT_PATH"
   }
 }
