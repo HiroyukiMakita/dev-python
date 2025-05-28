@@ -9,11 +9,11 @@
       "echo 'Sourcing .env file...'",
       "if [ -f .env ]; then source .env; else echo '.env file not found. Using default Python.'; fi",
       "DESIRED_PYTHON_VERSION=${PYTHON_VERSION:-3.11}",
-      "PYTHON_PKG_NAME=$(echo "python${DESIRED_PYTHON_VERSION}" | sed 's/\.//g')",
-      "echo "Ensuring Python version $DESIRED_PYTHON_VERSION (package: $PYTHON_PKG_NAME) is installed..."",
-      "devbox add "${PYTHON_PKG_NAME}@latest"",
+      "PYTHON_PKG_NAME=$(echo \"python${DESIRED_PYTHON_VERSION}\" | sed 's/\\.//g')",
+      "echo \"Ensuring Python version $DESIRED_PYTHON_VERSION (package: $PYTHON_PKG_NAME) is installed...\"",
+      "devbox add \"${PYTHON_PKG_NAME}@latest\"",
       "echo 'Welcome to devbox!'",
-      "echo "Python version $DESIRED_PYTHON_VERSION should now be available."",
+      "echo \"Python version $DESIRED_PYTHON_VERSION should now be available.\"",
       "python --version"
     ],
     "scripts": {
