@@ -22,17 +22,17 @@
 
 1. Docker コンテナビルド
 
-```
+```bash
 $ cd docker
 $ make
 ```
 
 1. コンテナ立ち上げ
 
-```
-// make 後は立ち上がるので不要
+```bash
+## make 後は立ち上がるので不要
 $ make up
-// python コンテナに入る
+## python コンテナに入る
 $ make exec-py
 ```
 
@@ -78,7 +78,7 @@ $ devbox shell
 そのため、ホストにインストールした uv で依存関係インストールをおこなっておけば、  
 Docker や Devbox を使用せずとも Jupyter Notebook や Python スクリプトを実行できるはずです。
 
-```
+```bash
 # 依存関係のインストール
 $ uv sync
 
@@ -96,7 +96,7 @@ $ uv run python hogehoge.py
 
 [pytest](https://docs.pytest.org/) を使用しています
 
-```
+```bash
 $ uv run pytest
 ```
 
