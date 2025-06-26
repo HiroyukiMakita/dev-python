@@ -14,7 +14,11 @@
 
 ※ venv ディレクトリはプロジェクトルートに作成するように設定しています。
 
-## 構築
+## 🛠 構築
+
+### ◯ Docker を使用した開発環境構築
+
+将来的にどこかにデプロイするような場合やインフラ担当、リーダーメンバーは Docker を使用して開発環境を構築すると良いかもしれません。
 
 1. Docker コンテナビルド
 
@@ -34,15 +38,61 @@ $ make exec-py
 
 その他の make コマンドは `docker/Makefile` をご覧ください。
 
-## ライブラリのインストール
+### ◯ Devbox を使用した開発環境構築（※ 試験的）
 
-[uv](https://docs.astral.sh/ruff/) を使用しています
+[Devbox](https://www.jetify.com/devbox) は [Nix (パッケージ管理システム) - Wikipedia](<https://ja.wikipedia.org/wiki/Nix_(%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E7%AE%A1%E7%90%86%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0)>) によって管理される隔離された開発環境を提供します。  
+プロジェクトの依存関係を `devbox.json` ファイルに定義することで、異なるマシン間で一貫した環境を保証します。
+
+Docker のオーバーヘッドがなく高速なので、まず開発を試す場合やインフラを気にしない場合は Devbox を利用するのが良いかもしれません。
+
+#### ● Devbox のインストール
+
+1.  公式の指示に従って Devbox をインストールします: [Devbox のインストール](https://www.jetpack.io/devbox/docs/installing-devbox/)。
+
+#### ● 依存関係のインストール
+
+```bash
+$ devbox install
+```
+
+#### ● Devbox シェルに入る
+
+`devbox/` ディレクトリ内から次のコマンドを実行して Devbox シェルを有効化します:
+
+```bash
+$ devbox shell
+
+# Devbox シェルが起動し、（devbox）と表示されます。
+(devbox) /bin/bash /Users/hoge/workspace/docker-python $
+# Devbox シェル内で Python の依存関係をインストール
+(devbox) /bin/bash /Users/hoge/workspace/docker-python $ uv sync
+# Python スクリプトを実行を試す
+(devbox) /bin/bash /Users/hoge/workspace/docker-python $ uv run python hello.py
+# Devbox シェルから抜ける場合
+(devbox) /bin/bash /Users/hoge/workspace/docker-python $ exit
+```
+
+## 📦 Python のパッケージマネージャー
+
+[uv](https://docs.astral.sh/ruff/) を使用しています。  
+そのため、ホストにインストールした uv で依存関係インストールをおこなっておけば、  
+Docker や Devbox を使用せずとも Jupyter Notebook や Python スクリプトを実行できるはずです。
 
 ```
+# 依存関係のインストール
+$ uv sync
+
+# 依存関係を追加
 $ uv add hogehoge
+
+# 依存関係を削除
+$ uv remove hogehoge
+
+# Python スクリプトを実行
+$ uv run python hogehoge.py
 ```
 
-## テスト
+## 🧪 テスト
 
 [pytest](https://docs.pytest.org/) を使用しています
 
@@ -50,7 +100,7 @@ $ uv add hogehoge
 $ uv run pytest
 ```
 
-## Linter、Formatter を実行
+## ✨ Linter、Formatter を実行
 
 以下を使用しています。
 
