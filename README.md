@@ -57,7 +57,7 @@ $ devbox install
 
 #### ● Devbox シェルに入る
 
-`devbox/` ディレクトリ内から次のコマンドを実行して Devbox シェルを有効化します:
+プロジェクトルートから次のコマンドを実行して Devbox シェルを有効化します:
 
 ```bash
 $ devbox shell
