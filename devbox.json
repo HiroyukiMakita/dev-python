@@ -1,17 +1,15 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.2/.schema/devbox.schema.json",
-  "packages": [
-    "python@3.13",
-    "uv@latest"
-  ],
+  "packages": ["uv@latest", "gcc@latest"],
   "shell": {
     "init_hook": [
-      "echo 'Welcome to devbox!' > /dev/null"
+      "uv python pin 3.10",
+      "uv python install",
+      "uv venv --clear --python 3.10 .venv",
+      "uv run python -m ipykernel install --user --name=devbox-py --display-name \"Python (devbox)\""
     ],
     "scripts": {
-      "test": [
-        "echo \"Error: no test specified\" && exit 1"
-      ]
+      "test": ["echo \"Error: no test specified\" && exit 1"]
     }
   }
 }
