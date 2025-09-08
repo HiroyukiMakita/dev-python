@@ -6,6 +6,7 @@
       "uv python pin 3.10",
       "uv python install",
       "uv venv --clear --python 3.10 .venv",
+      "uv run jupyter kernelspec uninstall devbox-py -f || echo 'Kernel devbox-py not found, skipping uninstall.'",
       "uv run python -m ipykernel install --user --name=devbox-py --display-name \"Python (devbox)\""
     ],
     "scripts": {
