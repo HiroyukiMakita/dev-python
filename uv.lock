@@ -149,7 +149,7 @@ wheels = [
 ]
 
 [[package]]
-name = "docker-python"
+name = "dev-python"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [

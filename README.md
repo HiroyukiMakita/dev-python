@@ -1,4 +1,4 @@
-# docker-python
+# dev-python
 
 ![Python](https://img.shields.io/badge/Python-3.13-065F97?logo=python&logoColor=CD9A0B)
 ![uv](https://img.shields.io/badge/uv-86944A?logo=uv&logoColor=271231)
@@ -64,13 +64,13 @@ $ devbox install
 $ devbox shell
 
 # Devbox シェルが起動し、（devbox）と表示されます。
-(devbox) /bin/bash /Users/hoge/workspace/docker-python $
+(devbox) /bin/bash /Users/hoge/workspace/dev-python $
 # Devbox シェル内で Python の依存関係をインストール
-(devbox) /bin/bash /Users/hoge/workspace/docker-python $ uv sync
+(devbox) /bin/bash /Users/hoge/workspace/dev-python $ uv sync
 # Python スクリプトを実行を試す
-(devbox) /bin/bash /Users/hoge/workspace/docker-python $ uv run python hello.py
+(devbox) /bin/bash /Users/hoge/workspace/dev-python $ uv run python hello.py
 # Devbox シェルから抜ける場合
-(devbox) /bin/bash /Users/hoge/workspace/docker-python $ exit
+(devbox) /bin/bash /Users/hoge/workspace/dev-python $ exit
 ```
 
 ## 📦 Python のパッケージマネージャー

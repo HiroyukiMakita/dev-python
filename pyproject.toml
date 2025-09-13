@@ -1,5 +1,5 @@
 [project]
-name = "docker-python"
+name = "dev-python"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"

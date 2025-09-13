@@ -1,5 +1,5 @@
 def main():
-    print("Hello from docker-python!")
+    print("Hello from dev-python!")
 
 
 if __name__ == "__main__":
