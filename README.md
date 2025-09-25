@@ -26,7 +26,7 @@ Docker のオーバーヘッドがなく高速なので、まず開発を試す�
 
 #### ● Devbox のインストール
 
-1.  公式の指示に従って Devbox をインストールします: [Devbox のインストール](https://www.jetpack.io/devbox/docs/installing-devbox/)。
+1. 公式の指示に従って Devbox をインストールします: [Devbox のインストール](https://www.jetpack.io/devbox/docs/installing-devbox/)。
 
 #### ● 依存関係のインストール
 
@@ -95,7 +95,7 @@ Docker のオーバーヘッドがなく高速なので、まず開発を試す�
 - Dov Container に入らずに python コンテナ環境を使用する方法
   1. `make up-jupyter` を実行
   2. 好きな Notebook を開いて実行（例：[./limited_resources.ipynb](./limited_resources.ipynb)）
-  3. カーネルの選択は「Existing Jupyter Server...」→「http://0.0.0.0.:8888」を入力 →「Yes」→「任意の名前をつける」→「Python(docker) /var/www/dev-python/.venv/bin/python3」を選択  
+  3. カーネルの選択は「Existing Jupyter Server...」→「[http://0.0.0.0:8888](http://0.0.0.0:8888)」を入力 →「Yes」→「任意の名前をつける」→「Python(docker) /var/www/dev-python/.venv/bin/python3」を選択  
   ※ 多分この手順を一回やれば、次からは任意の名前から選択可能になる
 
 ## 📦 Python のパッケージマネージャー
