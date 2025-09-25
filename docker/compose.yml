@@ -5,9 +5,9 @@ services:
     build:
       context: ./python
       secrets:
-          - CONTAINER_USER_PASSWORD
-          - CONTAINER_GIT_USER
-          - CONTAINER_GIT_EMAIL
+        - CONTAINER_USER_PASSWORD
+        - CONTAINER_GIT_USER
+        - CONTAINER_GIT_EMAIL
       dockerfile: Dockerfile
       args:
         - PYTHON_IMAGE=${PYTHON_IMAGE}
@@ -23,9 +23,9 @@ services:
       - ${HOST_SSH_DIR}:${CONTAINER_SSH_DIR}
 
 secrets:
-    CONTAINER_USER_PASSWORD:
-        environment: CONTAINER_USER_PASSWORD
-    CONTAINER_GIT_USER:
-        environment: CONTAINER_GIT_USER
-    CONTAINER_GIT_EMAIL:
-        environment: CONTAINER_GIT_EMAIL
+  CONTAINER_USER_PASSWORD:
+    environment: CONTAINER_USER_PASSWORD
+  CONTAINER_GIT_USER:
+    environment: CONTAINER_GIT_USER
+  CONTAINER_GIT_EMAIL:
+    environment: CONTAINER_GIT_EMAIL
