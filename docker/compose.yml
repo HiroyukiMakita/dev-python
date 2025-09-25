@@ -18,9 +18,18 @@ services:
     tty: true
     ports:
       - ${PYTHON_PORT}:8000
+      - ${JUPYTER_PORT}:8888
     volumes:
       - ${PROJECT_PATH}:${CONTAINER_SOURCE_ROOT}
       - ${HOST_SSH_DIR}:${CONTAINER_SSH_DIR}
+      - ${HOST_UV_DIR}:${CONTAINER_UV_DIR}
+      - ${HOST_JUPYTER_DIR}:${CONTAINER_JUPYTER_DIR}
+    # # CPU and Memory limits
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: "3.0"
+    #       memory: 4G
 
 secrets:
   CONTAINER_USER_PASSWORD:

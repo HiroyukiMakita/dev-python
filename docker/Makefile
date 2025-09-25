@@ -57,6 +57,15 @@ build:
 up:
 	@$(UP)
 
+up-jupyter:
+	$(eval CONTAINER := $(PYTHON))
+	$(eval ARG := -c "\
+		uv run jupyter kernelspec uninstall docker-py -f || echo 'Kernel docker-py not found, skipping uninstall.' && \
+		uv run python -m ipykernel install --user --name=docker-py --display-name \"Python (docker)\" && \
+		uv run jupyter notebook --ip=0.0.0.0 --no-browser --allow-root --NotebookApp.use_redirect_file=False --NotebookApp.custom_display_url=\"http://0.0.0.0:$(JUPYTER_PORT)/\" --ServerApp.token=''\
+	")
+	@$(EXEC)
+
 # Dockerfile 内でやるとうまく実行されないのか .venv が作成されないので
 # その他 uv sync 後に必要な初期化処理を行う
 uv-init:
