@@ -1,6 +1,6 @@
 # dev-python
 
-![Python](https://img.shields.io/badge/Python-3.13-065F97?logo=python&logoColor=CD9A0B)
+![Python](https://img.shields.io/badge/Python-3.10-065F97?logo=python&logoColor=CD9A0B)
 ![uv](https://img.shields.io/badge/uv-86944A?logo=uv&logoColor=271231)
 ![Ruff](https://img.shields.io/badge/Ruff-86944A?logo=ruff&logoColor=271231)
 ![Jupyter](https://img.shields.io/badge/Jupyter-CCCCCC?logo=jupyter&logoColor=C25F20)
