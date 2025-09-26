@@ -2,6 +2,8 @@
   "recommendations": [
     "charliermarsh.ruff",
     "ms-python.python",
-    "ms-toolsai.jupyter"
+    "ms-toolsai.jupyter",
+    // Pylance には　Pyright も含まれるので、Pyright を個別に入れる必要はない（というか入ってると警告出る）
+    "ms-python.vscode-pylance"
   ]
 }
