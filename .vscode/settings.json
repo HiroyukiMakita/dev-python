@@ -14,6 +14,9 @@
     "notebook.source.fixAll": "explicit",
     "notebook.source.organizeImports": "explicit",
   },
+  // Notebook のデフォルトのルートディレクトリをワークスペースフォルダに設定
+  // ※ docker 環境だと WORKDIR がルートディレクトリとなるが、Devbox だと実行ディレクトリがルートになるので合わせるため
+  "jupyter.notebookFileRoot": "${workspaceFolder}",
   "cSpell.words": [],
   "cSpell.ignorePaths": [
     "README.md"
