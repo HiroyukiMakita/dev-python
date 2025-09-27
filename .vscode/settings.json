@@ -12,13 +12,13 @@
   "notebook.formatOnSave.enabled": true,
   "notebook.codeActionsOnSave": {
     "notebook.source.fixAll": "explicit",
-    "notebook.source.organizeImports": "explicit",
+    "notebook.source.organizeImports": "explicit"
   },
+  // Jupyter Notebook で Pylance を無効化
+  "python.analysis.typeCheckingMode": "off",
   // Notebook のデフォルトのルートディレクトリをワークスペースフォルダに設定
   // ※ docker 環境だと WORKDIR がルートディレクトリとなるが、Devbox だと実行ディレクトリがルートになるので合わせるため
   "jupyter.notebookFileRoot": "${workspaceFolder}",
   "cSpell.words": [],
-  "cSpell.ignorePaths": [
-    "README.md"
-  ]
+  "cSpell.ignorePaths": ["README.md"]
 }
