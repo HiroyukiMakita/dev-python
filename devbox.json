@@ -1,6 +1,9 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.2/.schema/devbox.schema.json",
-  "packages": ["uv@latest", "gcc@latest"],
+  "packages": [
+    "uv@latest",
+    "gcc@latest"
+  ],
   "shell": {
     "init_hook": [
       "uv python pin 3.10",
@@ -11,7 +14,9 @@
       "export PYTHONPATH=$(pwd)"
     ],
     "scripts": {
-      "test": ["echo \"Error: no test specified\" && exit 1"]
+      "test": [
+        "echo \"Error: no test specified\" && exit 1"
+      ]
     }
   }
 }
